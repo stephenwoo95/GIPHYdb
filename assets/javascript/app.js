@@ -1,8 +1,10 @@
+//initial buttons array
 var topics = ["dogs","puppies","kitties","cats","snowboarding",
 				"skateboarding","surfing","deadmau5","EDC","physics",
 				"NBA","kobe","kyrie","lebron","westbrook","one piece",
 				"Game of Thrones","Rick and Morty","Silicon Valley"];
 
+//populate gifs from GIPHY
 function popGifs(results){
 	$("#search-results").empty();
 	for (var i = 0; i < results.length; i++) {
@@ -26,10 +28,9 @@ function popGifs(results){
         $("#search-results").prepend(gifDiv);
     }
 }
-
+//play still gifs
 function playGif(data) {
       var state = $(data).attr("data-state");
-      console.log(state);
 
       if(state === "still"){
         $(data).attr("src",$(data).attr("data-animate")).attr("data-state","animate");
@@ -45,6 +46,11 @@ $(document).ready(function(){
 	var searchTerm;  
 	var allClick = false;
 
+	//trying to do local storage
+	if (typeof(Storage) !== "undefined" && localStorage.getItem("topics") !== null) {
+	    topics = JSON.parse(localStorage.getItem("topics"));
+	}
+
 	for (var i=0;i<topics.length;i++){
 		var toAdd = $("<button>").text(topics[i]).attr("value",topics[i]);
 		toAdd.addClass("btn").addClass("searchbtn");
@@ -52,7 +58,7 @@ $(document).ready(function(){
 		topics[i] = topics[i].toLowerCase();
 	}
 //CLICK EVENTS
-
+	//buttons in top row
 	$(".searchbtn").on("click", function(){
 		limit=$("#search-limit").val();
 		rating=$("#search-rating").val();
@@ -68,7 +74,7 @@ $(document).ready(function(){
 		});
 		
 	});
-
+	//submit new search info
 	$("#submit-search-info").on("click",function(event){
 		event.preventDefault();
 		limit=$("#search-limit").val();
@@ -81,6 +87,8 @@ $(document).ready(function(){
 				toAdd.addClass("btn").addClass("searchbtn");
 				$("#search-buttons").prepend(toAdd);
 				topics.push(lower);
+				localStorage.clear();
+				localStorage.setItem("topics",JSON.stringify(topics));
 			}
 			var queryURL =  "https://api.giphy.com/v1/gifs/search?q="+searchTerm+
 						"&limit="+limit+"&rating="+rating+"&api_key=cd350dd864d84836ad184da0c29f894c";
@@ -93,7 +101,7 @@ $(document).ready(function(){
 			});
 		}
 	});
-
+	//toggle stop/start of all gifs (play or pause all together)
     $("#toggle-all").on("click",function() {
       allClick = !allClick;
       $(".gif").each(function(){
@@ -106,7 +114,7 @@ $(document).ready(function(){
         }
       });
     })
-
+    //clear search results
 	$("#clear-results").on("click", function(event) {
 		event.preventDefault();
 		$("#search-results").empty();
