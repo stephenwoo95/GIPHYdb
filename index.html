@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<title>GIPHY API Search</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="jumbotron">
+					<h1 class="text-center"><strong>GIPHY API Search</strong></h1>
+				</div>
+			</div>
+		</div> 
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="well" id="search-buttons">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2>Search Results<button class="btn" id="toggle-all">Toggle All</button></h2>
+					</div>
+					<div class="panel-body">
+						<div class="well" id="search-results">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<i class="fa fa-list-alt"></i> Search Parameters
+					</div>
+					<div class="panel-body">
+						<form id="artist-form">
+								<div class="form-group">
+									<label for="search-term">Search Term:</label>
+					    			<input type="text" class="form-control" id="search-term">
+								</div>
+								<div class="form-group">
+									<label for="limit">Number of Gifs to Retrieve:</label>
+									<select class="form-control" id="search-limit">
+										<option value=1>1</option>
+										<option value=1>2</option>
+										<option value=3>3</option>
+										<option value=4>4</option>
+										<option value=5>5</option>
+										<option value=6>6</option>
+										<option value=7>7</option>
+										<option value=8>8</option>
+										<option value=9>9</option>
+										<option value=10 selected>10</option>
+										<option value=11>11</option>
+										<option value=12>12</option>
+										<option value=13>13</option>
+										<option value=14>14</option>
+										<option value=15>15</option>
+										<option value=16>16</option>
+										<option value=17>17</option>
+										<option value=18>18</option>
+										<option value=19>19</option>
+										<option value=20>20</option>
+									</select>			  
+							    </div>
+					    		<div class="form-group">
+					    			<label for="rating">Rating:</label>
+					    			<select class="form-control" id="search-rating">
+					    				<option value='y'>Y</option>
+										<option value='g'>G</option>
+										<option value='pg' selected>PG</option>
+										<option value='pg-13'>PG-13</option>
+										<option value='r'>R</option>
+									</select>	
+					    		</div>
+					    		<button class="btn" id="submit-search-info"><span class="glyphicon glyphicon-search"></span>Search</button>
+					    		<button class="btn" id="clear-results"><span class="glyphicon glyphicon-trash"></span>Clear Results</button>
+					    	</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="text-center">
+			Powered by GIPHY &copy
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+</html>
