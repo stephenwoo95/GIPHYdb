@@ -9,9 +9,10 @@ html, body, .container {
 	min-height: 100%;
 }
 
-#search-buttons button {
+#search-buttons .searchbtn {
 	margin-right: 5px;
 	margin-bottom: 3px;
+	padding-right: 5px;
 }
 
 #toggle-all {
@@ -22,4 +23,20 @@ html, body, .container {
 .gif {
 	height: 100%;
 	width: 100%;
+}
+
+.close {
+	visibility: hidden;
+	position: relative;
+	left:5px;
+	bottom:9px;
+	display: inline-block;
+    background:#ccc;
+    margin:0;
+}
+
+.searchbtn:hover .close {
+	visibility: visible; 
+	background-color: red;
+	color: white;
 }

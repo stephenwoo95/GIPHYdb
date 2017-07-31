@@ -39,6 +39,18 @@ function playGif(data) {
       }
  }
 
+//remove gif button
+ function remove(event,data) {
+ 	event.stopPropagation();
+ 	var parent = data.parentNode;
+ 	var name = parent.getAttribute("value");
+ 	var grandparent = parent.parentNode;
+ 	grandparent.removeChild(parent);
+ 	topics.splice(topics.indexOf(name),1);
+ 	localStorage.clear();
+ 	localStorage.setItem("topics",JSON.stringify(topics));
+ }
+
 //on document load, populate buttons with elements from topics array
 $(document).ready(function(){
 	var limit;
@@ -52,8 +64,11 @@ $(document).ready(function(){
 	}
 
 	for (var i=0;i<topics.length;i++){
+		// var fullbtn = $("<span class='fullbtn'>");
 		var toAdd = $("<button>").text(topics[i]).attr("value",topics[i]);
 		toAdd.addClass("btn").addClass("searchbtn");
+		var close = $("<button>").text('x').addClass('close').attr("onclick","remove(event,this)");
+		toAdd.append(close);
 		$("#search-buttons").prepend(toAdd);
 		topics[i] = topics[i].toLowerCase();
 	}
@@ -72,7 +87,6 @@ $(document).ready(function(){
 			var results = response.data;
 			popGifs(results);
 		});
-		
 	});
 	//submit new search info
 	$("#submit-search-info").on("click",function(event){
@@ -85,6 +99,8 @@ $(document).ready(function(){
 			if(topics.indexOf(lower) === -1){
 				var toAdd = $("<button>").text(searchTerm).attr("value",searchTerm);
 				toAdd.addClass("btn").addClass("searchbtn");
+				var close = $("<button>").text('x').addClass('close').attr("onclick","remove(this)");
+				toAdd.append(close);
 				$("#search-buttons").prepend(toAdd);
 				topics.push(lower);
 				localStorage.clear();
