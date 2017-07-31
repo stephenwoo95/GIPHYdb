@@ -25,14 +25,16 @@ html, body, .container {
 	width: 100%;
 }
 
-.close {
+button .close {
 	visibility: hidden;
 	position: relative;
 	left:5px;
-	bottom:9px;
+	bottom:10px;
 	display: inline-block;
     background:#ccc;
     margin:0;
+    padding: 0px 2px 2px 2px;
+    font-size: 7px;
 }
 
 .searchbtn:hover .close {
