@@ -18,6 +18,7 @@ function popGifs(results){
         gif.attr("data-still",results[i].images.fixed_height_still.url);
         gif.attr("data-animate",results[i].images.fixed_height.url);
         gif.attr("data-state","still");
+        gif.attr("onclick","playGif(this)");
 
         gifDiv.prepend(p);
         gifDiv.prepend(gif);
@@ -25,6 +26,17 @@ function popGifs(results){
         $("#search-results").prepend(gifDiv);
     }
 }
+
+function playGif(data) {
+      var state = $(data).attr("data-state");
+      console.log(state);
+
+      if(state === "still"){
+        $(data).attr("src",$(data).attr("data-animate")).attr("data-state","animate");
+      }else{
+        $(data).attr("src",$(data).attr("data-still")).attr("data-state","still");
+      }
+ }
 
 //on document load, populate buttons with elements from topics array
 $(document).ready(function(){
@@ -81,19 +93,6 @@ $(document).ready(function(){
 			});
 		}
 	});
-
-    $(".gif").on("click", function() {
-      
-      var state = $(this).attr("data-state");
-      console.log(state);
-
-      if(state === "still"){
-        $(this).attr("src",$(this).attr("data-animate")).attr("data-state","animate");
-      }else{
-        $(this).attr("src",$(this).attr("data-still")).attr("data-state","still");
-      }
-
-    });
 
     $("#toggle-all").on("click",function() {
       allClick = !allClick;
