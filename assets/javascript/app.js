@@ -99,7 +99,7 @@ $(document).ready(function(){
 			if(topics.indexOf(lower) === -1){
 				var toAdd = $("<button>").text(searchTerm).attr("value",searchTerm);
 				toAdd.addClass("btn").addClass("searchbtn");
-				var close = $("<button>").text('x').addClass('close').attr("onclick","remove(this)");
+				var close = $("<button>").text('x').addClass('close').attr("onclick","remove(event,this)");
 				toAdd.append(close);
 				$("#search-buttons").prepend(toAdd);
 				topics.push(lower);
